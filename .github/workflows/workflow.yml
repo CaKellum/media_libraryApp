@@ -22,8 +22,8 @@ jobs:
 
         name: Tests
         run: flutter test
-        
-      - name: Build
+
+      - name: Build Web
         run: flutter build web
 
       - name: Deploy
