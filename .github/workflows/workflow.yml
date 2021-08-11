@@ -20,7 +20,7 @@ jobs:
       - name: Download Dependencies
         run: flutter pub get
 
-        name: Tests
+      - name: Tests
         run: flutter test
 
       - name: Build Web
