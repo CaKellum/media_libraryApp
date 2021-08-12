@@ -4,10 +4,13 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master
+      - main
+  pull_request:
+    branches:
+      -main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -20,18 +23,15 @@ jobs:
       - name: Download Dependencies
         run: flutter pub get
 
-      - name: Tests
+      - name: Testing
         run: flutter test
 
-      - name: Build Web
-        run: flutter build web
+      - name: Building apk
+        run: flutter build apk
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
-          force_orphan: true
-          user_name: 'github-ci[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Publish to gh-pages'
+      -name: Push to Releases
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "build/app/outputs/flutter-apk/*"
+        tag: v1.0.${{ github.run_number }}
+        token: ${{ secrets.TOKEN }}
