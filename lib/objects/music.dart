@@ -1,4 +1,6 @@
-class Music {
+import 'package:flutter_of_app/objects/user.dart';
+
+class Music implements MediaObject {
   final int id = 0;
   final int userAdded;
   String albumTitle;

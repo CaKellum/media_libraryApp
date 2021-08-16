@@ -4,3 +4,5 @@ class User {
 
   User({required this.name});
 }
+
+class MediaObject {}

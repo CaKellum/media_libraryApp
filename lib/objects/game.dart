@@ -1,4 +1,6 @@
-class Game {
+import 'package:flutter_of_app/objects/user.dart';
+
+class Game implements MediaObject {
   final int id = 0;
   final int userAdded;
   String title;
