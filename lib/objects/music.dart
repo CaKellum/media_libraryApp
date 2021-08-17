@@ -2,7 +2,7 @@ import 'package:medialibrary_app/objects/user.dart';
 
 class Music implements MediaObject {
   int _id = 0;
-  final int userAdded;
+  int userAdded;
   String albumTitle;
   String format;
 
