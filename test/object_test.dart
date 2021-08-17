@@ -1,6 +1,6 @@
-import 'package:flutter_of_app/objects/game.dart';
-import 'package:flutter_of_app/objects/movie.dart';
-import 'package:flutter_of_app/objects/music.dart';
+import 'package:medialibrary_app/objects/game.dart';
+import 'package:medialibrary_app/objects/movie.dart';
+import 'package:medialibrary_app/objects/music.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

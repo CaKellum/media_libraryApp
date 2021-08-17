@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_of_app/add_media.dart';
-import 'package:flutter_of_app/media_forms/game_form.dart';
-import 'package:flutter_of_app/media_forms/movie_form.dart';
-import 'package:flutter_of_app/media_forms/music_form.dart';
+import 'package:medialibrary_app/add_media.dart';
+import 'package:medialibrary_app/media_forms/game_form.dart';
+import 'package:medialibrary_app/media_forms/movie_form.dart';
+import 'package:medialibrary_app/media_forms/music_form.dart';
 
 void main() {
   runApp(MyApp());
