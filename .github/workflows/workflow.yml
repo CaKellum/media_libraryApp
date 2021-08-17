@@ -1,15 +1,10 @@
-name: Deploy to GitHub Pages
-
+name: Working Releases
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
-  pull_request:
-    types: [closed]
+    tags:
+      - "v*"
     branches:
       -main
-
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -29,11 +24,11 @@ jobs:
 
       - name: Building apk
         run: flutter build apk
-
-      - name: Push to Releases
-        uses: ncipollo/release-action@v1
+        
+      - name: Automatic Releases
+        uses: marvinpinto/action-automatic-releases
         with:
-          artifacts: "build/app/outputs/flutter-apk/*"
-          tag: v0.0.${{ github.run_number }}
-          token: ${{ secrets.TOKEN }}
-          prerelease: true
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          files: "build/app/outputs/flutter-apk/*"
+
+
