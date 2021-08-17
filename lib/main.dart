@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_of_app/add_media.dart';
+import 'package:flutter_of_app/media_forms/game_form.dart';
+import 'package:flutter_of_app/media_forms/movie_form.dart';
+import 'package:flutter_of_app/media_forms/music_form.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +18,10 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => LibrarySearchPage(title: this.title),
-        '/addMedia': (context) => AddMedia()
+        '/addMedia': (context) => AddMedia(),
+        '/Movie': (context) => MovieForm(),
+        '/Game': (context) => GameForm(),
+        '/Music': (context) => MusicForm(),
       },
       theme: ThemeData(
           primarySwatch: Colors.purple,

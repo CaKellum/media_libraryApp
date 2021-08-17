@@ -1,32 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_of_app/objects/game.dart';
-import 'package:flutter_of_app/objects/movie.dart';
-import 'package:flutter_of_app/objects/music.dart';
 
-class AddMedia extends StatelessWidget {
-  final Map<String, Object> mediaList = {
-    'Media': Null,
-    'Movie': Movie,
-    'Music': Music,
-    'Game': Game,
+class AddMedia extends StatefulWidget {
+  const AddMedia({Key? key}) : super(key: key);
+  State<AddMedia> createState() => _AddMedia();
+}
+
+class _AddMedia extends State<AddMedia> {
+  final Set<String> mediaList = {
+    'Movie',
+    'Music',
+    'Game',
   };
-
-  List<DropdownMenuItem> dropDownItems() {
-    List<DropdownMenuItem> list = [];
-    mediaList.forEach((key, value) {
-      list.add(DropdownMenuItem(
-        child: Text(key),
-        value: value,
-      ));
-    });
-    print(list);
-    return list;
-  }
 
   @override
   Widget build(BuildContext context) {
-    var list = dropDownItems();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -35,8 +23,48 @@ class AddMedia extends StatelessWidget {
         ),
       ),
       body: Column(
-        children: [Text("What type of media?"), DropdownButton(items: list)],
+        children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+            child: Text(
+              "What Type of media are you adding?",
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ),
+          ListView.builder(
+            itemCount: mediaList.length,
+            shrinkWrap: true,
+            padding: EdgeInsets.all(5),
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: EdgeInsets.all(10),
+                child: CupertinoButton(
+                    child: Text(
+                      mediaList.elementAt(index),
+                      style: Theme.of(context).textTheme.button,
+                    ),
+                    color: Theme.of(context).accentColor,
+                    onPressed: () {
+                      String route = '/';
+                      switch (mediaList.elementAt(index)) {
+                        case 'Movie':
+                          route = '/Movie';
+                          break;
+                        case 'Music':
+                          route = '/Music';
+                          break;
+                        case 'Game':
+                          route = '/Game';
+                          break;
+                      }
+                      Navigator.popAndPushNamed(context, route);
+                    }),
+              );
+            },
+          )
+        ],
       ),
+      backgroundColor: Theme.of(context).backgroundColor,
     );
   }
 }
