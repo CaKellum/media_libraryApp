@@ -1,8 +1,10 @@
 class User {
-  final int id = 0;
+  int id = 0;
   String name;
 
   User({required this.name});
 }
 
-class MediaObject {}
+abstract class MediaObject {
+  int getId();
+}

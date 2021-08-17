@@ -1,8 +1,8 @@
 import 'package:medialibrary_app/objects/user.dart';
 
 class Game implements MediaObject {
-  final int id = 0;
-  final int userAdded;
+  int _id = 0;
+  int userAdded;
   String title;
   String typeOfGame;
   String? console;
@@ -12,4 +12,9 @@ class Game implements MediaObject {
       this.typeOfGame = "video",
       this.userAdded = 0,
       this.console});
+
+  @override
+  int getId() {
+    return _id;
+  }
 }
