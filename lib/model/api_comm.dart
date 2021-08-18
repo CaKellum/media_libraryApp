@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiComunication {
-  Future<Map<String, dynamic>> requestGet(String url) async {
+  Future<dynamic> requestGet(String url) async {
     http.Response source = await http.get(Uri.parse(url));
     if (source.statusCode > 299) {
       throw Exception(
