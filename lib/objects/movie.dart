@@ -7,7 +7,7 @@ class Movie {
   Movie(
       {required this.title,
       this.format = "dvd",
-      this.userAdded = 0,
+      this.userAdded = 1,
       this.id = 0});
 
   Movie.fromJSON(Map<String, dynamic> json)

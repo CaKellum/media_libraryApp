@@ -8,7 +8,7 @@ class Game {
   Game(
       {required this.title,
       this.typeOfGame = "video",
-      this.userAdded = 0,
+      this.userAdded = 1,
       this.id = 0,
       this.console});
 

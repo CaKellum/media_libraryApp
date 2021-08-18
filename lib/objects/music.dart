@@ -8,7 +8,7 @@ class Music {
   Music(
       {required this.albumTitle,
       this.format = "CD",
-      this.userAdded = 0,
+      this.userAdded = 1,
       this.id = 0,
       this.artist = ""});
 
