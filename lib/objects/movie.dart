@@ -1,15 +1,18 @@
-import 'package:medialibrary_app/objects/user.dart';
-
-class Movie implements MediaObject {
-  int _id = 0;
+class Movie {
+  int id;
   int userAdded;
   String title;
   String format;
 
-  Movie({required this.title, this.format = "dvd", this.userAdded = 0});
+  Movie(
+      {required this.title,
+      this.format = "dvd",
+      this.userAdded = 0,
+      this.id = 0});
 
-  @override
-  int getId() {
-    return _id;
-  }
+  Movie.fromJSON(Map<String, dynamic> json)
+      : id = json['id'],
+        userAdded = json['userId'],
+        title = json['title'],
+        format = json['format'];
 }
