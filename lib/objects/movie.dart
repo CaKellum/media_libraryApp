@@ -15,4 +15,11 @@ class Movie {
         userAdded = json['userId'],
         title = json['title'],
         format = json['format'];
+
+  Map<String, dynamic> toJSON() => {
+        'id': id,
+        'title': title,
+        'format': format,
+        'userId': userAdded,
+      };
 }
