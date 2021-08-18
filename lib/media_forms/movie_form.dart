@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:medialibrary_app/helpers/view_helper.dart';
+import 'package:medialibrary_app/model/controller.dart';
+import 'package:medialibrary_app/objects/movie.dart';
 
 class MovieForm extends StatefulWidget {
   @override
@@ -31,7 +33,12 @@ class _MovieForm extends State<MovieForm> {
             });
           }),
           ViewHelper.applyPadding(ViewHelper.titleField(controller), 10),
-          ElevatedButton(onPressed: () {}, child: Text("Submit"))
+          ElevatedButton(
+              onPressed: () {
+                MediaController().addMovie(
+                    Movie(title: controller.text, format: formatDropDown));
+              },
+              child: Text("Submit"))
         ],
       ),
     );

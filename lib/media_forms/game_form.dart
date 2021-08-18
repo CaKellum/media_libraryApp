@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:medialibrary_app/helpers/view_helper.dart';
+import 'package:medialibrary_app/model/controller.dart';
+import 'package:medialibrary_app/objects/game.dart';
 
 class GameForm extends StatefulWidget {
   @override
@@ -57,7 +59,14 @@ class _GameForm extends State<GameForm> {
           });
         }),
         ViewHelper.titleField(controller),
-        ElevatedButton(child: Text("Submit"), onPressed: () {})
+        ElevatedButton(
+            child: Text("Submit"),
+            onPressed: () {
+              MediaController().addGame(Game(
+                  title: controller.text,
+                  typeOfGame: togDropDown,
+                  console: consoleDropDown));
+            })
       ],
     ));
   }
