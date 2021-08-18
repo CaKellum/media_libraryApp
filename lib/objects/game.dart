@@ -12,7 +12,7 @@ class Game {
       this.id = 0,
       this.console});
 
-  Game.fromJson(Map<String, dynamic> json)
+  Game.fromJSON(Map<String, dynamic> json)
       : this.title = json['title'],
         this.typeOfGame = json['typeOfGame'],
         this.userAdded = json['userId'],
@@ -23,8 +23,8 @@ class Game {
         'id': id,
         'title': title,
         'typeOfGame': typeOfGame,
-        'console': console,
-        'format': console,
+        'console': console ?? "Board",
+        'format': console ?? "Board",
         'userId': userAdded,
       };
 }

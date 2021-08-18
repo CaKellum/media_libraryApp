@@ -12,7 +12,7 @@ class Music {
       this.id = 0,
       this.artist = ""});
 
-  Music.fromJson(Map<String, dynamic> json)
+  Music.fromJSON(Map<String, dynamic> json)
       : id = json['id'],
         userAdded = json['userId'],
         albumTitle = json['title'],
