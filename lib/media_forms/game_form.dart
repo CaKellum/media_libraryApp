@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:medialibrary_app/helpers/validation.dart';
+import 'package:medialibrary_app/helpers/view_helper.dart';
 
 class GameForm extends StatefulWidget {
   @override
@@ -46,58 +46,19 @@ class _GameForm extends State<GameForm> {
     return Form(
         child: Column(
       children: [
-        ddConsoles(),
-        ddTog(),
-        titleTextField(),
-        ElevatedButton(child: Text("Submit"), onPressed: () {})
-      ],
-    ));
-  }
-
-  TextFormField titleTextField() {
-    return TextFormField(
-      validator: (value) => Validation.notEmpty(value),
-      controller: controller,
-    );
-  }
-
-  DropdownButton<String> ddTog() {
-    return DropdownButton<String>(
-        value: togDropDown,
-        onChanged: (value) {
-          setState(() {
-            togDropDown = value!;
-          });
-        },
-        items: togList());
-  }
-
-  List<DropdownMenuItem<String>> togList() {
-    return typesOfGame.map<DropdownMenuItem<String>>((str) {
-      return DropdownMenuItem(
-        child: Text(str),
-        value: str,
-      );
-    }).toList();
-  }
-
-  DropdownButton<String> ddConsoles() {
-    return DropdownButton<String>(
-        value: consoleDropDown,
-        onChanged: (value) {
+        ViewHelper.genericDropDown(console, consoleDropDown, context, (value) {
           setState(() {
             consoleDropDown = value!;
           });
-        },
-        items: consoleList());
-  }
-
-  List<DropdownMenuItem<String>> consoleList() {
-    return console.map<DropdownMenuItem<String>>((str) {
-      return DropdownMenuItem(
-        child: Text(str),
-        value: str,
-      );
-    }).toList();
+        }),
+        ViewHelper.genericDropDown(typesOfGame, togDropDown, context, (value) {
+          setState(() {
+            togDropDown = value!;
+          });
+        }),
+        ViewHelper.titleField(controller),
+        ElevatedButton(child: Text("Submit"), onPressed: () {})
+      ],
+    ));
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:medialibrary_app/helpers/validation.dart';
+import 'package:medialibrary_app/helpers/view_helper.dart';
 
 class MusicForm extends StatefulWidget {
   @override
@@ -20,7 +20,7 @@ class _MusicForm extends State<MusicForm> {
       appBar: AppBar(
         title: Text('Add Music'),
       ),
-      body: StandardPadding.applyPadding(formContainer(context), this.inset),
+      body: ViewHelper.applyPadding(formContainer(context), this.inset),
       backgroundColor: Theme.of(context).backgroundColor,
     );
   }
@@ -30,40 +30,15 @@ class _MusicForm extends State<MusicForm> {
       key: _formKey,
       child: Column(
         children: [
-          formatDropDownList(context),
-          StandardPadding.applyPadding(titleTextField(), this.inset),
+          ViewHelper.genericDropDown(format, formatDropDown, context, (value) {
+            setState(() {
+              formatDropDown = value!;
+            });
+          }),
+          ViewHelper.applyPadding(ViewHelper.titleField(controller), 10),
           ElevatedButton(onPressed: () {}, child: Text("Submit"))
         ],
       ),
     );
-  }
-
-  TextFormField titleTextField() {
-    return TextFormField(
-      validator: (value) => Validation.notEmpty(value),
-      controller: controller,
-    );
-  }
-
-  DropdownButton<String> formatDropDownList(BuildContext context) {
-    return DropdownButton<String>(
-      dropdownColor: Theme.of(context).accentColor,
-      value: formatDropDown,
-      onChanged: ddOnChanged,
-      items: ddItemList,
-    );
-  }
-
-  List<DropdownMenuItem<String>> get ddItemList => format.map((e) {
-        return DropdownMenuItem(
-          child: Text(e),
-          value: e,
-        );
-      }).toList();
-
-  void ddOnChanged(value) {
-    setState(() {
-      formatDropDown = value!;
-    });
   }
 }

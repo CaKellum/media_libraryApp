@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:medialibrary_app/helpers/validation.dart';
+import 'package:medialibrary_app/helpers/view_helper.dart';
 
 class MovieForm extends StatefulWidget {
   @override
@@ -14,34 +14,26 @@ class _MovieForm extends State<MovieForm> {
   Widget build(BuildContext context) {
     String formatDropDown = formats.first;
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Add Movie'),
-        ),
-        body: Padding(
-          padding: EdgeInsets.all(10),
-          child: Form(
-            child: Column(
-              children: [
-                DropdownButton<String>(
-                    value: formatDropDown,
-                    onChanged: (value) {
-                      setState(() {
-                        formatDropDown = value!;
-                      });
-                    },
-                    items: formats.map<DropdownMenuItem<String>>((format) {
-                      return DropdownMenuItem<String>(
-                        child: Text(format),
-                        value: format,
-                      );
-                    }).toList()),
-                TextFormField(
-                  validator: (value) => Validation.notEmpty(value),
-                ),
-                ElevatedButton(onPressed: () {}, child: Text("Submit"))
-              ],
-            ),
-          ),
-        ));
+      appBar: AppBar(
+        title: Text('Add Movie'),
+      ),
+      body: ViewHelper.applyPadding(formContainer(formatDropDown, context), 10),
+    );
+  }
+
+  Form formContainer(String formatDropDown, BuildContext context) {
+    return Form(
+      child: Column(
+        children: [
+          ViewHelper.genericDropDown(formats, formatDropDown, context, (value) {
+            setState(() {
+              formatDropDown = value!;
+            });
+          }),
+          ViewHelper.applyPadding(ViewHelper.titleField(controller), 10),
+          ElevatedButton(onPressed: () {}, child: Text("Submit"))
+        ],
+      ),
+    );
   }
 }
